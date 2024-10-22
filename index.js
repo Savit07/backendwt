@@ -59,8 +59,8 @@ const getUsers = async (req, res) => {
 app.use(express.json());
 
 // Routes
-app.post('/add', registerUser);
-app.get('/', getUsers);
+app.get('/add', getUsers);
+app.post('/', registerUser);
 
 // Export the app as a serverless function
 module.exports = app;
