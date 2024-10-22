@@ -30,6 +30,7 @@ const User = mongoose.model('User', userSchema);
 
 // Controller Functions
 const registerUser = async (req, res) => {
+  console.log('updating users...');
   const { name, age, phobiaInfo, email, promptResponse, assessmentType, data } = req.body;
 
   try {
