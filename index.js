@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 
 
@@ -55,7 +56,7 @@ const getUsers = async (req, res) => {
 };
 
 // Middleware
-
+app.use(cors());
 app.use(express.json());
 
 // Routes
