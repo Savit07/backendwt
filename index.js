@@ -39,8 +39,10 @@ const registerUser = async (req, res) => {
   try {
     const user = new User({ name, age, phobiaInfo, email, promptResponse, assessmentType, data });
     await user.save();
+    console.log('users saved...');
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
+    console.log('users not saved...');
     res.status(400).json({ message: error.message });
   }
 };
