@@ -7,7 +7,10 @@ const app = express();
 // MongoDB Connection
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb+srv://pass:pass@cluster0.l2bnk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log('MongoDB connected');
   } catch (error) {
     console.error('MongoDB connection failed:', error.message);
@@ -55,10 +58,13 @@ app.use(express.json());
 
 // Routes
 app.post('/add', registerUser);
-app.get('/', getUsers);
+app.get('/api/users', getUsers);
+
+// Export the app as a serverless function
+module.exports = app;
 
 // Connect to MongoDB and start server
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 connectDB().then(() => {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
