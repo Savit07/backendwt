@@ -43,6 +43,7 @@ const registerUser = async (req, res) => {
 
 const getUsers = async (req, res) => {
   try {
+    console.log('Fetching users...');
     const users = await User.find(); // Fetch all users from the database
     res.status(200).json(users);
   } catch (error) {
@@ -55,7 +56,7 @@ app.use(express.json());
 
 // Routes
 app.post('/add', registerUser);
-app.get('/api/users', getUsers);
+app.get('/', getUsers);
 
 // Export the app as a serverless function
 module.exports = app;
